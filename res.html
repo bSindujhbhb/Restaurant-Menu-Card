@@ -1,0 +1,436 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        <link href= 'https://fonts.googleapis.com/css?family=Lobster|Great+Vibes|Satisfy|Inconsolata|Open+Sans' rel='stylesheet'>  
+        <script>
+            function navigateToSection(sectionId) {
+            var sectionElement = document.getElementById(sectionId);
+            if (sectionElement) {
+                sectionElement.scrollIntoView({
+                    behavior:'smooth',
+                    block: 'start',
+                });
+            }
+        }
+            function increaseCount(a, b) {
+                var input = b.previousElementSibling;
+                var value = parseInt(input.value, 10);
+                value = isNaN(value) ? 0 : value;
+                value++;
+                input.value = value;
+            }
+            function decreaseCount(a, b) { 
+                var input = b.nextElementSibling; 
+                var value = parseInt(input.value, 10); 
+                if (value > 1) { 
+                    value = isNaN(value) ? 0 : value; 
+                    value--; 
+                    input.value = value; 
+                }
+            }
+            function showOrderSummary() {
+  var summaryList = document.getElementById("summaryList");
+  var totalAmountElement = document.getElementById("totalAmount");
+  var totalAmount = 0;
+
+  // Clear any existing content in the summary
+  summaryList.innerHTML = "";
+  
+  // Loop through each counter and check if the quantity is more than 0
+  var counters = document.querySelectorAll(".counter input");
+  counters.forEach(function(counter, index) {
+    var quantity = parseInt(counter.value);
+    if (quantity > 0) {
+      var foodName = document.querySelectorAll("#b1 h4")[index].innerText;
+      var foodPrice = parseInt(document.querySelectorAll("#b2 h5")[index].innerText.replace("Rs.", ""));
+      var itemTotal = quantity * foodPrice;
+      totalAmount += itemTotal;
+
+      // Create list item for the summary
+      var listItem = document.createElement("li");
+      listItem.innerHTML = `${foodName} x ${quantity} = Rs.${itemTotal}`;
+      summaryList.appendChild(listItem);
+    }
+  });
+
+  // Update the total amount in the order summary
+  totalAmountElement.innerText = "Rs." + totalAmount;
+
+  // Display the order summary
+  var orderSummary = document.getElementById("orderSummary");
+  orderSummary.style.display = "block";
+  
+  // Scroll to the order summary section
+  orderSummary.scrollIntoView({ behavior: "smooth" });
+}
+
+            </script>
+        <style>
+            nav ul{
+                border-radius: 20px;
+                list-style-type: none;
+                padding: 0%;
+            }
+            nav li{
+                display: inline;
+                float: left;
+            }
+            nav a:link,nav a:visited{
+                font-size: 25px;
+                text-decoration: none;
+                background-color: rgb(255, 123, 0);
+                color: black;
+                font-weight: bold;
+                display: block;
+                width: 198px;
+                text-align: center;
+                text-shadow: 2px 2px 2px rgb(168, 164, 164);
+                padding: 13px 0;
+            }
+            nav a:hover{
+                background-color:white;
+                text-shadow: 4px 4px 4px rgb(168, 167, 167);
+                color:rgb(235, 7, 7);
+            }
+            body{
+                margin: 0 auto;
+                width: 990px;
+                position: relative;
+                background-image: url("https://wallpaperswide.com/download/black_background_wood_i-wallpaper-1920x1080.jpg");
+            }
+            #b1 {
+                transition: transform 0.35s;
+                margin-top: 150px;
+                background-color: white;
+                width: 150px;
+                border-radius: 20px;
+                margin-bottom: -30px;
+                margin-top: 40;
+            }
+            #b1:hover {
+                transform: scale(1.1);
+                z-index: 1;
+            }
+            #b2 {
+                border-radius: 10px;
+                background-color: rgb(255, 123, 0);
+                margin-top: -25px;
+                margin-bottom: -30px;
+            }
+            #d{
+                margin-bottom: -43px;
+            }
+            input.largerCheckbox {
+                width: 20px;
+                height: 20px;
+            }
+            #block{
+            margin-top: -30px;
+            }
+            .counter {
+                border-radius: 10px;
+                width: 145px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+            }
+            .counter input {
+                height: 30;
+                width: 70px;
+                border: 0;
+                line-height: 0px;
+                font-size: 20px;
+                text-align: center;
+                color: black;
+                appearance: none;
+                outline: 0;
+            }
+            .counter span {
+                display: block;
+                font-size: 25px;
+                cursor: pointer;
+                color: black;
+                user-select: none;
+            }
+            #veg:hover{
+                font-weight: bold;
+                font-size: 30px;
+                height: 50px;
+                width: 150px;
+                margin-left: 250px;
+                background-color:white;
+                text-shadow: 4px 4px 4px rgb(168, 167, 167);
+                color:darkgreen;
+                
+            }
+            #veg{
+                margin-top: 30px;
+                font-weight: bold;
+                font-size: 30px;
+                height: 50px;
+                width: 150px;
+                margin-left: 250px;
+                background-color: darkgreen;
+                color: white;
+                text-shadow: 2px 2px 2px rgb(168, 164, 164);
+            }
+            #nonveg:hover{
+                font-weight: bold;
+                font-size: 30px;
+                height: 50px;
+                width: 150px;
+                margin-left: 200px;
+                background-color:white;
+                text-shadow: 4px 4px 4px rgb(168, 167, 167);
+                color:darkred;
+               
+            }
+            #nonveg{
+                margin-top: 10px;
+                font-weight: bold;
+                font-size: 30px;
+                height: 50px;
+                width: 150px;
+                margin-left: 200px;
+                background-color: darkred;
+                color: rgb(255, 255, 255);
+                text-shadow: 2px 2px 2px rgb(168, 164, 164);
+            }
+        </style>
+    </head>
+    <body>
+        <h1 align="center" style="color: rgb(255, 255, 255);font-family: Great Vibes ; font-size: 80px; font-weight: lighter;margin-top: 20px;text-shadow: 2px 2px 2px rgb(139, 139, 139);">abc Restaurent</h1>
+        <div id="block">
+            <nav>
+                <ul>
+                    <li><a href="Vitamins.html">Soups</a></li>
+                    <li><a href="def.html">Starters</a></li>
+                    <li><a href="rec.html">Rice&Rotis</a></li>
+                    <li><a href="">Curries</a> </li>
+                    <li><a href="">Desserts</a></li>
+                </ul>
+            </nav>
+        </div>
+        <button id="veg" onclick="navigateToSection('vegsou')">Veg</button>
+        <button id="nonveg" onclick="navigateToSection('nvegsou')">Non-Veg</button>
+        <!-- Veg soup --> 
+        <section id="vegsou">
+            <div id="b1">
+                <img style="height: 130;width: 120;float: middle;padding-left: 15;padding-top: 10;padding-right: 10;" src="https://www.linkpicture.com/q/Tomato-Soup-Daens-Kitchen-High-Res-6-scaled-removebg-preview.png">
+                <h4 align="center" style="margin-top: -20px;font-size: 20px;">Tomato<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.500</h5>
+                </div>
+            </div><br>
+            <div class="counter">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 205px;margin-top:-255px ;">
+                <img style="height: 130;width: 120;float: middle;padding-left: 15;padding-right: 10;margin-top: -5px;" src="https://www.linkpicture.com/q/Sweet-Corn-Soup-Recipe-1-1-removebg-preview.png">
+                <h4 align="center" style="margin-top: -5px;font-size: 20px;">Corn<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left: 205px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 415px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 5;padding-right: 10;padding-top: 10;" src="https://www.linkpicture.com/q/vegetable-soup-removebg-preview_1.png">
+                <h4 align="center" style="margin-top: 0px;font-size: 20px;">Vegetable<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:415px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 620px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/image-removebg-preview-8_2.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Garlic<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+                <div class="counter" style="margin-left:620px;">
+                    <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                    <input type="text" value="0">
+                    <span class="up" onClick='increaseCount(event, this)'>+</span>
+                </div>
+            <div id="b1" style="margin-left: 830px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/Mushroom-Soup-Recipe-removebg-preview.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Mushroom<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:830px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1">
+                <img style="height: 130;width: 200;float: middle;padding-top: 10;margin-left: -25;" src="https://www.linkpicture.com/q/Vegetable_Manchow_Soup-removebg-preview.png">
+                <h4 align="center" style="margin-top: -20px;font-size: 20px;">Veg-Manchow<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 205px;margin-top:-255px ;">
+                <img style="height: 130;width: 160;float: middle;margin-top: -5px;margin-left: -3;padding-top: 12;" src="https://www.linkpicture.com/q/chinese-hot-and-sour-soup-sq-removebg-preview.png">
+                <h4 align="center" style="margin-top: -19px;font-size: 20px;">Hot-n-Sour<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left: 205px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+        </section>
+        <!-- non veg soup -->
+        <section id="nvegsou">
+            <div id="b1">
+                <img style="height: 120;width: 120;float: middle;margin-top: -5px;margin-left: -3;padding-top: 12;padding-left: 15;" src="https://www.linkpicture.com/q/672532d5-4608-499e-82e4-c0ca3531be0d-removebg-preview-1.png">
+                <h4 align="center" style="margin-top: -10px;font-size: 20px;">Chicken<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 205px;margin-top:-255px ;">
+                <img style="height: 100;width: 170;float: middle;padding-left:-5 ;padding-right: 100;margin-top: 15px;margin-left:-18 ;" src="https://www.linkpicture.com/q/maxresdefault-removebg-preview_5.png">
+                <h4 align="center" style="margin-top: 5px;font-size: 20px;">Mutton<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left: 205px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 415px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 5;padding-right: 10;padding-top: 10;" src="https://www.linkpicture.com/q/vegetable-soup-removebg-preview_1.png">
+                <h4 align="center" style="margin-top: 0px;font-size: 20px;">Seafood<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:415px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 620px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/image-removebg-preview-8_2.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Garlic<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+                <div class="counter" style="margin-left:620px;">
+                    <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                    <input type="text" value="0">
+                    <span class="up" onClick='increaseCount(event, this)'>+</span>
+                </div>
+            <div id="b1" style="margin-left: 830px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/Mushroom-Soup-Recipe-removebg-preview.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Mushroom<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:830px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1">
+                <img style="height: 130;width: 200;float: middle;padding-top: 10;margin-left: -25;" src="https://www.linkpicture.com/q/Vegetable_Manchow_Soup-removebg-preview.png">
+                <h4 align="center" style="margin-top: -20px;font-size: 20px;">Veg-Manchow<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 205px;margin-top:-255px ;">
+                <img style="height: 130;width: 160;float: middle;margin-top: -5px;margin-left: -3;padding-top: 12;" src="https://www.linkpicture.com/q/chinese-hot-and-sour-soup-sq-removebg-preview.png">
+                <h4 align="center" style="margin-top: -19px;font-size: 20px;">Chicken Corn<br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left: 205px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 415px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 5;padding-right: 10;padding-top: 10;" src="https://www.linkpicture.com/q/vegetable-soup-removebg-preview_1.png">
+                <h4 align="center" style="margin-top: 0px;font-size: 20px;">Chicken Lemon <br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:415px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 620px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/image-removebg-preview-8_2.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Shrimp And Fish <br>Soup</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:620px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+            <div id="b1" style="margin-left: 830px;margin-top:-255px;">
+                <img style="height: 110;width: 140;float: middle;padding-left: 10;padding-right: 10;padding-top: 5;" src="https://www.linkpicture.com/q/Mushroom-Soup-Recipe-removebg-preview.png">
+                <h4 align="center" style="margin-top: 04px; font-size: 20px;">Gosht<br>Shorba</h4>
+                <div id="b2">
+                    <h5 align="center" style="font-weight: bold; font-size: 22px;">Rs.250</h5>
+                </div>
+            </div><br>
+            <div class="counter" style="margin-left:830px;">
+                <span class="down" onClick='decreaseCount(event, this)'>-</span>
+                <input type="text" value="0">
+                <span class="up" onClick='increaseCount(event, this)'>+</span>
+            </div>
+        </section>
+        <button onclick="showOrderSummary();">Place Order</button>
+        <div id="orderSummary" style="display: none;">
+            <h2>Order Summary</h2>
+            <ul id="summaryList">
+              <!-- Order summary items will be added here -->
+            </ul>
+            <p>Total: <span id="totalAmount"></span></p>
+          </div>
+    </body>
+</html>
